@@ -117,10 +117,15 @@ export const CartProvider = ({ children }) => {
     updateCartItemsReducer(newCartItems);
   };
 
-  const clearItemFromCart = (cartItemToClear) => {
-    const newCartItems = clearCartItem(cartItems, cartItemToClear);
-    updateCartItemsReducer(newCartItems);
+  const clearItemFromCart = () => {
+    const newCartItems = [];
+    updateCartItemsReducer([]);
   };
+  
+  // const clearItemFromCart = (cartItemToClear) => {
+  //   const newCartItems = clearCartItem(cartItems, cartItemToClear);
+  //   updateCartItemsReducer(newCartItems);
+  // };
 
   const value = {
     isCartOpen,

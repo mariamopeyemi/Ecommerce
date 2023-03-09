@@ -1,4 +1,4 @@
-
+// import BaseLayout from "@/components/layouts/BaseLayout";
 import React, {useState, useEffect} from "react";
 import ProductCard from "../components/cards/ProductCard";
 import BaseLayout from "../components/layouts/BaseLayout";
@@ -10,23 +10,24 @@ const Home = () => {
 	const [output, setOutput] = useState([]);
     const [limit, setLimit] = useState(20);
     const [page, setPage] = useState(0);
-    const [searchTerm, setSearchTerm] = useState('');
+    const [filter, setFilter] = useState('');
 
 
-const searchResults = React.useMemo( () =>  output.filter((item) =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase())
-), [searchTerm, output]);
-    
 
+// search function
     const onSearch = (e) => {
-        setSearchTerm(e.target.value);
+        // setFilter(e.target.value);
     }
+
+  // const filteredData = output.data.filter((item) =>
+  //   item.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
 
 
 
 // pagination function
     const countNo =()=>{
-        const count = Math.ceil( searchResults.length / limit);
+        const count = Math.ceil( output.length / limit);
         return count;
     }
     const paginate = (list) => {
@@ -83,14 +84,14 @@ const searchResults = React.useMemo( () =>  output.filter((item) =>
     }, [])
  
 
-  return <BaseLayout onSearch={onSearch} searchValue={searchTerm} search>
+  return <BaseLayout onSearch={onSearch} searchValue={filter} search>
    <div className="home">
             <div className="home__container">
                 {/* <img className="home__image hidden xl:flex" src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/BankPromotions/Mastercard/Nigeria/GTBANK/2021/June/1500x600_2._CB665054876_.jpg" alt=""/> */}
                 <img className="w-full" src="https://ng.jumia.is/cms/Homepage/2021/W29/NG_TOPSTRIP_NSF_Desktop-(1).gif" alt=""/>
-                <div className="md:mx-[4rem]  my-[2rem] grid gap-[1rem] grid-cols-2  md:grid-cols-4  ">
-                {paginate(searchResults)[page]?.length > 0
-                ? paginate(searchResults)[page].map((item, index) => (
+                <div className="md:mx-[2rem]  mb-[2rem] grid gap-[1rem] grid-cols-2  md:grid-cols-4  ">
+                {paginate(output)[page]?.length > 0
+                ? paginate(output)[page].map((item, index) => (
                     <ProductCard
                         key={index}
                         id={item.id}
@@ -103,8 +104,40 @@ const searchResults = React.useMemo( () =>  output.filter((item) =>
                     />
                     ))
                     : <div className="min-h-[80vh]  w-[100%] flex flex-row justify-center items-center">
-                        <p className="m-[auto]  title-2 text-center"> {searchTerm ? "no results found": "fetching products.."}</p>
+                        <p className="m-[auto]  title-2 text-center">fetching products..</p>
                         </div>}
+                    <>
+                    {/* <ProductCard
+                   
+                        id="843643"
+                        title="PlayStation 5 Console"
+                        price={875.99}
+                        image="https://m.media-amazon.com/images/I/619BkvKW35L._AC_UY218_.jpg"
+                        rating={5}
+                    />
+                    <ProductCard
+                        id="234393"
+                        title="Apple iPhone 12 Pro, 128GB, "
+                        // title="Apple iPhone 12 Pro, 128GB, Pacific Blue - Fully Unlocked (Renewed)"
+                        price={1250}
+                        image="https://images-na.ssl-images-amazon.com/images/I/71z4b3G3GAL._AC_UL320_SR320,320_.jpg" 
+                        rating={4}
+                    />
+                    <ProductCard
+                        id="097272"
+                        title="NIKE Plus Cushion Socks (6-Pair)"
+                        price={46.99}
+                        image="https://m.media-amazon.com/images/I/81Y49CpPftL._AC_UL320_.jpg" 
+                        rating={5} 
+                    />
+                     <ProductCard
+                        id="532682"
+                        title="NIKE Air Max Plus SE TN1 Tuned Men's Sneaker"
+                        price={345.73}
+                        image="https://m.media-amazon.com/images/I/61xbX2FrDCS._AC_UL640_FMwebp_QL65_.jpg" 
+                        rating={4}
+                    /> */}
+                    </>
                 </div>
 
                 <div className="mt-[28px] flex justify-between items-center px-[20px] caption_light flex-wrap">

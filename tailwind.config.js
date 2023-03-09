@@ -20,6 +20,7 @@ module.exports = {
         primary: "var(--color-primary)",
         "gray-1": "var(--color-gray-1)",
         "gray-2": "var(--color-gray-2)",
+        "greenCode": "#7eb143",
       },
     },
     screens: {

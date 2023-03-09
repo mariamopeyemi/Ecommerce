@@ -12,7 +12,7 @@ function Product({ id, title, image, price, rating ,category,descr, description,
     const addToCart = () => addItemToCart({ id, title, image, price, rating ,category, description,});
     return (
        
-        <div className='serviceCard min-h-[400px] p-[30px] md:p-[2rem] w-[100%] max-w-[400px] flex flex-col justify-between  '>
+        <div className='serviceCard min-h-[400px] p-[30px] md:p-[2rem] w-[100%] max-w-[350px] flex flex-col justify-between  '>
         <div>
              <img src={image} alt="" className='max-h-[200px] min-h-[150px] w-[100%] object-contain mb-[15px]' />    
         </div>

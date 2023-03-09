@@ -4,31 +4,39 @@ import CheckoutProduct from '../cards/DrawerCheckout';
 import TextArea from '../form-elements/TextArea';
 import Input from '../form-elements/Input';
 import axios from "axios";
+import Button from '@mui/material/Button';
+import { LoadingButton } from '@mui/lab';
 import { useRouter } from 'next/router';
 import { CartContext } from '../../store/cart.context';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import CancelIcon from '@mui/icons-material/Cancel';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import CartBadge from '../cards/CartIcon';
+
+import Tooltip from '@mui/material/Tooltip';
+
 
 const RightDrawer = ({open, onClose}) => {
 
   
   const {clearItemFromCart, cartItems, cartCount, cartTotal } = useContext(CartContext);
-  const clearItemHandler = () => clearItemFromCart(cartItem );
+  const clearItemHandler = () => clearItemFromCart(cartItems );
 
 // const { image, price, title, rating, category,quantity, description, id } = cartItem;
 
   const deliveryFee = 50;
-  const selectedGoodsCost = 2000;
-  const product = deliveryFee + selectedGoodsCost;
-  const vatAmount = product  * (0.05);
+  const selectedGoodsCost = cartTotal;
+  const vatAmount = selectedGoodsCost  * (0.05);
   const totalAmount = cartTotal + vatAmount + deliveryFee;
+  const payableAmount= parseInt(totalAmount)
   const router = useRouter();
   const validEmail = new RegExp(
 		"^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
 	);
-  // Number("100")
+
 	const [email, setEmail] = useState("");
 	const [emailError, setEmailError] = useState('');
+  const [loading, setLoading] =useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,13 +45,13 @@ const RightDrawer = ({open, onClose}) => {
       setEmailError('Email is required');
       return;
     } else{setEmailError('')} 
-    // setLoading(true);
+    setLoading(true);
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer sk_test_7c6397333b9f0b13e384afd48f572de63abea089'  
     }
      await  axios.post('https://api.paystack.co/transaction/initialize', {
-        amount: totalAmount,
+        amount: payableAmount,
         email: email,
       }, {
         headers
@@ -77,14 +85,16 @@ const RightDrawer = ({open, onClose}) => {
        <div className=' md:w-[600px]'>
           <div className=' md:w-[600px] md:px-[2rem] border-b-1 border border-gray-200 flex justify-between flex-row'>
             <div>
-            Your Cart  <AddShoppingCartIcon 
-                  color='#f9f9f9'
-                  fontSize="small"
-                  /> {cartCount} 
+            Your Cart  <CartBadge  value={cartCount}/>
             </div>
-            <p onClick={onClose} className='items-end block md:hidden'><CancelIcon/></p>
+            <Tooltip  
+              title="Empty Cart" 
+              sx={{fontSize:'8px'}}>
+              <RemoveShoppingCartIcon sx={{color:'#7eb143'}} onClick={clearItemHandler} className='cursor-pointer' />
+            </Tooltip>
+            <p onClick={onClose} className='items-end block md:hidden'><CancelIcon sx={{color:'#7eb143'}} /></p>
           </div>
-          { cartCount >=1 && 
+          { cartCount >=1 ?
           <>
           <section className=" md:w-[600px]  flex flex-col  ">
               
@@ -95,22 +105,19 @@ const RightDrawer = ({open, onClose}) => {
                  
                   />
                     ))}
-
-              <p onClick={clearItemHandler}>clear all</p>
           </section>
           <section className=" relative pb-[1rem] px-[2rem] flex flex-col md:flex-row gap-[1rem] bg-white">
-                <div className='w-full md:w-[50%] flex flex-col gap-[1rem]'>
+                <div className='w-full md:w-[50%] flex flex-col gap-[1.8rem]'>
                     <p className="text-[22px] mb-[2rem] ">Customer details</p>
                     <Input type='email' label={"Email"} 
                       value={email}
-                      // placeholder="Enter your email address"
+                      placeholder="Enter your email address"
                       onChange={(e) => setEmail(e.target.value)}
                       
                     />
                   
                     {emailError && <span className="text-[12px] text-end !text-red-500">{emailError}</span>}
-
-                    <Input type='text' label={"Address"}
+                  <Input type='text' label={"Address"}
                       // value={email}
                       // placeholder="Enter your email address"
                       // onChange={(e) => setEmail(e.target.value)}
@@ -152,13 +159,15 @@ const RightDrawer = ({open, onClose}) => {
                         </div>
                         </div>
                   </div>
-                  <button className="mt-[1rem] btn-primary" onClick={handleSubmit}>Pay Now</button>
+                  <div className='md:w-[200px] md:ml-[auto]'>
+                    <LoadingButton loading={loading} className="mt-[1rem] btn-primary" onClick={handleSubmit}>Pay Now</LoadingButton>
                 
+                  </div>
               </div>
           </section>
           </>
-          } {<div className='flex my-[auto] '>
-            <img src='/images/empty-cart.webp' alt='Empty Cart' className='w-[100%] h-[100%]'/>
+          : <div className='flex my-[auto] '>
+            <img src='/images/empty-cart.webp' alt='Empty Cart' className='w-[100%] h-[100%]' />
             </div>}
             
        </div>
