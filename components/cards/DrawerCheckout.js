@@ -40,7 +40,7 @@ const { image, price, title, rating, category,quantity, description, id } = cart
                                   size="small"
                     />
                         </div>
-                        <p onClick={clearItemHandler}>Delete</p>
+                        {/* <p onClick={clearItemHandler}>Delete</p> */}
                  </div>
                  <div className="flex flex-row  justify-between ">
                    <p className="text-[16px]">

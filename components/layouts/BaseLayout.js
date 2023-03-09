@@ -26,7 +26,7 @@ const BaseLayout = ({ children , onSearch, search, searchValue}) => {
   const {cartCount } = useContext(CartContext);
 
   return (
-    <div>
+    <div className=''>
       <header className="text-[16px] bg-[white] h-20 flex items-center">
         <BaseContainer className="flex  items-center justify-between mx-auto">
           <p className="!text-greenCode cursor-pointer title-2" onClick={()=>router.push('/')}>MARIAM STORE</p>
@@ -101,13 +101,14 @@ const BaseLayout = ({ children , onSearch, search, searchValue}) => {
             </p> 
         </BaseContainer>
       </header>
-      <main className="min-h-[88vh] h-[auto] bg-white ">{children}</main>
-      <footer className="h-[5vh] md:text-[16px] text-[12px] bg-white items-center flex flex-row justify-center">
+      <main className="min-h-[90vh] bg-white ">{children}</main>
+      <footer className=" relative h-[5vh] md:text-[16px] text-[12px] bg-white items-center flex flex-row justify-center">
          <p> 
           &copy; {new Date().getFullYear()}
           <span className='!text-[#7eb143]'> Mariam Store</span>  &nbsp;
         </p>
-        <p>All Rights Reserved</p></footer>
+        <p>All Rights Reserved</p>
+        </footer>
     </div>
   );
 };

@@ -85,7 +85,7 @@ const searchResults = React.useMemo( () =>  output.filter((item) =>
 
   return <BaseLayout onSearch={onSearch} searchValue={searchTerm} search>
    <div className="home">
-            <div className="home__container">
+            <div className="">
                 {/* <img className="home__image hidden xl:flex" src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/BankPromotions/Mastercard/Nigeria/GTBANK/2021/June/1500x600_2._CB665054876_.jpg" alt=""/> */}
                 <img className="w-full" src="https://ng.jumia.is/cms/Homepage/2021/W29/NG_TOPSTRIP_NSF_Desktop-(1).gif" alt=""/>
                 <div className="md:mx-[4rem]  my-[2rem] grid gap-[1rem] grid-cols-2  md:grid-cols-4  ">
@@ -102,12 +102,12 @@ const searchResults = React.useMemo( () =>  output.filter((item) =>
                         rating={item.rating.rate}
                     />
                     ))
-                    : <div className="min-h-[80vh]  w-[100%] flex flex-row justify-center items-center">
+                    : <div className="min-h-[80vh] h-[auto]  w-[100%] flex flex-row justify-center items-center">
                         <p className="m-[auto]  title-2 text-center"> {searchTerm ? "no results found": "fetching products.."}</p>
                         </div>}
                 </div>
 
-                <div className="mt-[28px] flex justify-between items-center px-[20px] caption_light flex-wrap">
+                <div className=" mt-[20px] flex justify-between items-center px-[20px] flex-wrap">
                     <p>showing result 1-{limit} of {output.length} items</p>
                     <MyPagination page={page + 1}  count={countNo()}
                       onClick={(e) => {
