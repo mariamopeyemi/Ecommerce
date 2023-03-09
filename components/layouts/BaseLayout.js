@@ -96,8 +96,7 @@ const BaseLayout = ({ children , onSearch, search, searchValue}) => {
                   fontSize="small"
                   />
                   <span className="font-bold mx-[12px]">
-                      {/* { cart?.length } */}
-                     {''}  {''}1
+                  {cartCount}
                   </span>
                 </a> </li>
             </ul>
