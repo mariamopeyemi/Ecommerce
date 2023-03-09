@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  min-height: 100vh;
+}
+
+.btnprop {
+  padding: 19px 48px;
+  gap: 10px;
+  width: 208px;
+  font-size: 12px;
+  height: 57px;
+  background: linear-gradient(180deg, #5A4FAF 7.87%, #651DDD 68.38%);
+  border-radius: 8px;
+  /* text-sm w-[200px] h-[50px] 
+  bg-gradient-to-r  from-[#5A4FAF] to-[#651DDD] rounded-[8px]
+   text-white hover:bg-[#b2aecc] */
+}

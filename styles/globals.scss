@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #638D33;
+  --color-primary-grad: linear-gradient(90deg, #638D33 0%, #89C149 100%);
+
+  --color-gray-1: #C5C8BA;
+  --color-gray-2: #A9AD9F;
+}
+
+@layer base {
+  html {
+    /* 16px = 100% */
+    /* 10px = 62.5% */
+    font-size: 100%;
+    // font-size: 12px;
+  }
+
+  body {
+    @apply bg-[#111111];
+    overflow-x: hidden
+  }
+
+  h1 {
+    @apply text-6xl font-extrabold;
+  }
+
+  h2 {
+    @apply text-5xl font-extrabold ;
+    letter-spacing: -0.25px
+  }
+
+  h3 {
+    @apply text-5xl font-bold text-black;
+  }
+
+
+
+}
+
+@layer components {
+  .btn-primary {
+    @apply rounded-2xl h-12 p-8 py-3 text-white text-base font-medium;
+
+    /* can be treated like a fallback */
+    background-color: var(--color-primary);
+    /* will be "on top", if browser supports it */
+    background-image: var(--color-primary-grad);
+    /* these will reset other properties, like background-position, but it does know what you mean */
+    /* background: red;
+    background: linear-gradient(red, orange); */
+
+  }
+
+  .link-primary {
+    @apply text-base font-medium text-white cursor-pointer;
+  }
+
+  .heading-grad-caption {
+    @apply grad-text text-lg font-medium capitalize inline-flex;
+    letter-spacing: 0.4em;
+  }
+
+  .heading-desc {
+    @apply text-[#A9AD9F] text-base font-normal;
+    letter-spacing: 0.5px;
+  }
+}
+
+@layer utilities {
+  .grad-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[#89C149]
+  }
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+
+.faint{
+  // background: red; 
+  // background: rgba(255, 255, 255, 0.8); 
+  background: rgb(227,221,244);
+  filter: blur(100px); 
+  /* backdrop-filter: blur(95px); */
+}
+.faint2{
+
+  background: rgb(204,244,239);
+  /* background: #ccf4ef; */
+  filter: blur(100px); 
+}
+
+.home {
+  display:flex;
+  background-color:   #f9f9f9;
+  justify-content: center;
+  // height: auto;
+  // margin-left: auto;
+  // margin-right: auto;
+  // padding: 0px 2rem !important;
+  font-size: 12px;
+  max-width: 1500px;
+}
+
+.home__image {
+ width: 100%;
+ z-index: -1;
+ margin-bottom: -150px;
+ mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+.home__row {
+ display: flex;
+ z-index: 1;
+ margin-left: 5px;
+ margin-right: 5px;
+}
+
+.serviceCard{
+background: white;
+
+box-shadow: 0px 9px 34px rgba(0, 0, 0, 0.04);
+border-radius: 16px;
+}
+
+.btn-sec{
+  background-color: #f9f8f7;
+  padding: 4px;
+  width: 100px;
+  border-radius: 6px;
+ margin-top: 1rem;
+}

@@ -1,0 +1,90 @@
+@import "variables.module.scss";
+
+
+.title-1-purple {
+  /* // text-6xl font-extrabold text-[#3F358B]; */
+  font-size: 3.7rem;
+  font-weight: 700;
+  color: #3F358B;
+  line-height: 4rem;
+   font-family: $font-primary;
+ 
+}
+.title-2{
+  /* // text-6xl font-extrabold text-[#3F358B]; */
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: black;
+  line-height: 2.7rem;
+   font-family: $font-primary;
+ 
+}
+
+.sub-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #212121;
+  line-height: 2rem;
+   font-family: $font-primary;
+
+}
+.sub-title2 {
+  font-size: 1rem;
+  font-weight: 400;
+  color:  #757680;
+  line-height: 1.3rem;
+   font-family: $font-primary;
+
+}
+// .sub-title-nude {
+//   font-size: 0.9rem;
+//   font-weight: 400;
+//   color: #C5C8BA;;
+//   line-height: 2rem;
+//    font-family: $font-primary;
+ 
+// }
+.sub-title-nude {
+  font-size: 1rem;
+  font-weight: 400;
+  // color: #C5C8BA;
+  line-height: 1.5rem;
+   font-family: $font-primary;
+  @media screen and (max-width: 600px) {
+    font-size: 0.8rem;
+    font-weight: 600;
+  // color: #C5C8BA;
+    line-height: 1.2rem;
+  }
+}
+
+
+
+@media screen and (max-width: 600px) {
+  .title-1-purple {
+    font-size: 2.2rem;
+    line-height: 2.5rem;
+  }
+  .sub-title {
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+  .sub-title-nude {
+    font-size: 0.5rem;
+  }
+  .title-2 {
+    font-size: 1rem;
+  }
+}
+
+.btnprop {
+  padding: 19px 48px;
+  gap: 10px;
+  width: 208px;
+  height: 57px;
+  background: linear-gradient(180deg, #5A4FAF 7.87%, #651DDD 68.38%);
+  border-radius: 8px;
+  cursor: pointer;
+
+}
+
