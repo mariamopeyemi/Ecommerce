@@ -99,7 +99,7 @@ const Home = () => {
                         price={item.price}
                         image={item.image}
                         category={item.category}
-                        // description={item.description}
+                        description={item.description}
                         rating={item.rating.rate}
                     />
                     ))
@@ -139,37 +139,6 @@ const Home = () => {
                     /> */}
                     </>
                 </div>
-
-                {/* <div className="md:mx-[2rem] mb-[2rem] grid gap-[1rem] grid-cols-2  md:grid-cols-4 ">
-                    <ProductCard
-                        id="735262"
-                        title="Versace Pour Homme Eau de Toilette Spray for Men, 6.7 Ounce"
-                        price={65.17}
-                        image="https://m.media-amazon.com/images/I/51a6469pD8L._AC_UL640_FMwebp_QL65_.jpg" 
-                        rating={5} 
-                    />
-                    <ProductCard
-                        id="736143"
-                        title="Beats by Dr. Dre - Beats Solo3 Wireless On-Ear Headphones - Black (Renewed)"
-                        price={144.99}
-                        image="https://m.media-amazon.com/images/I/5183TwlNfNS._AC_UY436_FMwebp_QL65_.jpg" 
-                        rating={5} 
-                    />
-                    <ProductCard
-                        id="523457"
-                        title="New Beats Studio Buds – True Wireless Noise Cancelling Earbuds - White"
-                        price={149.99}
-                        image="https://images-na.ssl-images-amazon.com/images/I/41ijQEHFicS.__AC_SY445_SX342_QL70_FMwebp_.jpg" 
-                        rating={5} 
-                    />
-                    <ProductCard
-                        id="893745"
-                        title="Tom Ford Eau de Soleil Blanc Spray, 3.4 Ounce"
-                        price={133.43}
-                        image="https://m.media-amazon.com/images/I/51pUjpXfSBL._AC_UL640_FMwebp_QL65_.jpg" 
-                        rating={4}
-                    />
-                    </div> */}
 
                 <div className="mt-[28px] flex justify-between items-center px-[20px] caption_light flex-wrap">
                     <p>showing result 1-{limit} of {output.length} items</p>

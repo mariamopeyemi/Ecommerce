@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import RightDrawer from './RightDrawer';
 import Input from "../form-elements/Input";
 import BaseContainer from "./BaseContainer";
+import { CartContext } from '../../store/cart.context';
 // import { useStateValue } from "../../pages/StateProvider";
 // import { useGlobalContext } from "../../pages/context";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -20,14 +21,13 @@ const BaseLayout = ({ children , onSearch, search, searchValue}) => {
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
   };
-  // const[ {cart}, dispatch] = useStateValue();
-  // const { amount } = useGlobalContext();
 
+  const {cartCount } = useContext(CartContext);
 
   return (
     <div>
       <header className="text-[16px] bg-[white] h-20 flex items-center">
-        <BaseContainer className=" flex items-center justify-between mx-auto">
+        <BaseContainer className=" flex  items-center justify-between mx-auto">
           <p className="!text-[#7eb143] cursor-pointer title-2" onClick={()=>router.push('/')}>MARIAM STORE</p>
          {search && <form>
             <Input onClick={onSearch} value={searchValue} type="text" placeholder="Search ...  " className={'w-full md:w-[350px]'} />
@@ -36,7 +36,7 @@ const BaseLayout = ({ children , onSearch, search, searchValue}) => {
             <ul className="flex items-center gap-[2rem]">
             
                 <li><a 
-                onClick={()=>{router.push('/carts')}} 
+                // onClick={()=>{router.push('/carts')}} 
                 className="text-black hover:opacity-50">
                   
                   <span className="" style={{marginRight: "10px"}}>
@@ -58,9 +58,7 @@ const BaseLayout = ({ children , onSearch, search, searchValue}) => {
                   fontSize="small"
                   />
                   <span className="">
-                      {/* { cart?.length } */}
-                      {/* {amount} */}
-                     {''}  {''}1
+                      {cartCount}
                   </span>
                 </a> </li>
             </ul>
@@ -86,8 +84,8 @@ const BaseLayout = ({ children , onSearch, search, searchValue}) => {
                   />
                  </a> </li>
                  <li><a  
-                onClick={()=>{router.push('/carts')}}
-                // onClick={handleAddToCartClick} 
+                // onClick={()=>{router.push('/carts')}}
+                onClick={handleAddToCartClick} 
                 className="text-black hover:opacity-50">
                   
                   <span className="" style={{marginRight: "10px"}}>

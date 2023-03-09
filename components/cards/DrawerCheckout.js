@@ -1,24 +1,28 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Box, Typography } from '@mui/material';
 import Rating from '@mui/material/Rating';
+import { CartContext } from '../../store/cart.context';
 
-function CheckoutProduct({id, image, title, price,  rating, category, description, hideButton}) {
+function CheckoutProduct({ cartItem, hideButton}) {
     // const [{ cart }, dispatch] = useStateValue();
     const [value, setValue] = useState(2);
+      const doublePrice = cartItem.price * cartItem.quantity;
+// worinnh
+
+const { image, price, title, rating, category,quantity, description, id } = cartItem;
+
+  const { clearItemFromCart, addItemToCart, removeItemToCart } =
+    useContext(CartContext);
+
+  const clearItemHandler = () => clearItemFromCart(cartItem);
+  const handleAddToCart = () => addItemToCart(cartItem);
+  const handleRemoveFromCart = () => removeItemToCart(cartItem);
 
 
-    const handleAddToCart = () => {
-        // Code to add item to cart
-      }
-    
-    const handleRemoveFromCart = () => {
-        // Code to remove item from cart
-      }
-      const doublePrice = price * 2;
     return (<>
         <div className="text-[14px] flex flex-col md:flex-row gap-[2rem] justify-between px-[2rem] items-center">
                 <div>
-                  <img src={image} alt='product image' className="rounded-[10px] w-[150px] h-[100px]" />
+                  <img src={image} alt='product image' className="rounded-[10px] w-[150px] h-[auto]" />
                 </div>
                 <div className="flex flex-col  justify-between md:w-[70%] ">
                  <div>
@@ -27,15 +31,16 @@ function CheckoutProduct({id, image, title, price,  rating, category, descriptio
                          <div className='flex flex-row justify-between'>
                                 <Typography className='font-semibold text-black text-start text-[12px]'> {category} </Typography>
                                 <Rating
-                                name="simple-controlled"
-                                value={value}
-                                onChange={(event, newValue) => {
-                                    setValue(newValue);
-                                }}
-                                size="small"
-                                />
+                                  name="simple-controlled"
+                                  value={rating}
+                                  precision={0.1}
+                                  onChange={(event, newValue) => {
+                                      setValue(newValue);
+                                  }}
+                                  size="small"
+                    />
                         </div>
-                        
+                        <p onClick={clearItemHandler}>clear all</p>
                  </div>
                  <div className="flex flex-row  justify-between ">
                    <p className="text-[16px]">
@@ -45,12 +50,12 @@ function CheckoutProduct({id, image, title, price,  rating, category, descriptio
                     <div className="flex flex-row gap-[1rem]">
                 
                     <p onClick={handleAddToCart} className=" w-[20px] text-center h-[25px] rounded-[4px] bg-[#f2f2f2] cursor-pointer">+</p>
-                    <p >1</p>
+                    <p >{quantity}</p>
                     <p onClick={handleRemoveFromCart} className=" w-[20px] text-center h-[25px] rounded-[4px] bg-[#f2f2f2] cursor-pointer">-</p>
                     </div>
                     <p className="text-[16px]">
                             <small>$</small>
-                            <strong>{doublePrice}</strong>
+                            <strong>{doublePrice.toFixed(2)}</strong>
                     </p>
                    </div>
                 </div>

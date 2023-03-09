@@ -1,0 +1,11 @@
+const CART_ITEMS = 'CART_ITEMS';
+const CART_COUNT = 'CART_COUNT';
+const CART_TOTAL = 'CART_TOTAL';
+const CART_OPEN = 'CART_OPEN';
+
+export {
+  CART_ITEMS,
+  CART_TOTAL,
+  CART_COUNT,
+  CART_OPEN,
+};

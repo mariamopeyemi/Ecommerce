@@ -6,6 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider } from "@emotion/react";
 import theme from "../next-mui-setup/theme";
 import createEmotionCache from "../next-mui-setup/createEmotionCache";
+import { CartProvider } from '../store/cart.context';
 import "../styles/globals.scss";
 import "../styles/typography.scss";
 import AOS from 'aos'
@@ -34,7 +35,10 @@ export default function MyApp(props) {
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           {/* <AppContextProvider> */}
-                <Component {...pageProps} />
+          <CartProvider>
+          <Component {...pageProps} />
+          </CartProvider>
+                
           {/* </AppContextProvider> */}
         </ThemeProvider>
       </CacheProvider>

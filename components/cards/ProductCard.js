@@ -1,26 +1,15 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { Box, Typography } from '@mui/material';
 import Rating from '@mui/material/Rating';
+import { CartContext } from '../../store/cart.context';
 
-
-function Product({ id, title, image, price, rating ,category, description,}) {
+function Product({ id, title, image, price, rating ,category,descr, description,}) {
     const [value, setValue] = React.useState(2);
-    // const  [rate, setRate] = React.useState(2);
-    // const [{ cart }, dispatch] = useStateValue();
     
-    const addToCart = () => {
-        // dispatch the item into the data layer
-        // dispatch({
-        //     type: "ADD_TO_CART",
-        //     item: {
-        //         id: id,
-        //         title: title,
-        //         image: image,
-        //         price: price,
-        //         rating: rating,
-        //     },
-        // });
-    };
+ 
+    const { addItemToCart } = useContext(CartContext);
+
+    const addToCart = () => addItemToCart({ id, title, image, price, rating ,category, description,});
     return (
        
         <div className='serviceCard min-h-[400px] p-[30px] md:p-[2rem] w-[100%] max-w-[400px] flex flex-col justify-between  '>
@@ -31,7 +20,7 @@ function Product({ id, title, image, price, rating ,category, description,}) {
         <Typography className='sub-title-nude !text-black text-start'> {title} </Typography>
         <Typography className='text-black text-start text-[12px]'> {category} </Typography>
           
-         <Typography className='text-black text-start '> {description} </Typography>
+         {descr && <Typography className='sub-title2 text-black text-start '> {description} </Typography>}
                 <p className="">
                     <small>$</small>
                     <strong>{price}</strong>
