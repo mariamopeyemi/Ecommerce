@@ -35,7 +35,9 @@ const BaseLayout = ({ children , onSearch, search, searchValue}) => {
           <nav className="hidden md:flex flex-row ">
             <ul className="flex items-center gap-[2rem]">
             
-                <li><a onClick={()=>{router.push('/carts')}} className="text-black hover:opacity-50">
+                <li><a 
+                onClick={()=>{router.push('/carts')}} 
+                className="text-black hover:opacity-50">
                   
                   <span className="" style={{marginRight: "10px"}}>
                       Account
