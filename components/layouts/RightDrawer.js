@@ -22,8 +22,6 @@ const RightDrawer = ({open, onClose}) => {
   const {clearItemFromCart, cartItems, cartCount, cartTotal } = useContext(CartContext);
   const clearItemHandler = () => clearItemFromCart(cartItems );
 
-// const { image, price, title, rating, category,quantity, description, id } = cartItem;
-
   const deliveryFee = 50;
   const selectedGoodsCost = cartTotal;
   const vatAmount = selectedGoodsCost  * (0.05);
@@ -62,9 +60,6 @@ const RightDrawer = ({open, onClose}) => {
         console.log(response, email, totalAmount, 'i work', response.data.data.authorization_url)
         router.push(response.data.data.authorization_url)
         
-        // setInterval(() => {
-        //   router.push('https://opeyemi.dev')
-        // }, 5000);
       })
       .catch(function (error) {
         console.log(error);
@@ -84,15 +79,15 @@ const RightDrawer = ({open, onClose}) => {
         ModalProps={{ keepMounted: true }}>
        <div className=' md:w-[600px]'>
           <div className=' md:w-[600px] md:px-[2rem] border-b-1 border border-gray-200 flex justify-between flex-row'>
-            <div>
-            Your Cart  <CartBadge  value={cartCount}/>
-            </div>
-            <Tooltip  
-              title="Empty Cart" 
-              sx={{fontSize:'8px'}}>
-              <RemoveShoppingCartIcon sx={{color:'#7eb143'}} onClick={clearItemHandler} className='cursor-pointer' />
-            </Tooltip>
-            <p onClick={onClose} className='items-end block md:hidden'><CancelIcon sx={{color:'#7eb143'}} /></p>
+              <div>
+                Your Cart  <CartBadge  value={cartCount}/>
+              </div>
+              <Tooltip  
+                title="Empty Cart" 
+                sx={{fontSize:'8px'}}>
+                <RemoveShoppingCartIcon  sx={{color:'#7eb143'}} onClick={clearItemHandler} className='cursor-pointer' />
+              </Tooltip>
+              <p onClick={onClose} className='items-end block md:hidden'><CancelIcon sx={{color:'#7eb143'}} /></p>
           </div>
           { cartCount >=1 ?
           <>

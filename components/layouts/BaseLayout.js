@@ -64,35 +64,6 @@ const BaseLayout = ({ children , onSearch, search, searchValue}) => {
             open={isDrawerOpen} 
             onClose={handleDrawerClose} 
             />
-        {/* Mobile Nav */}
-          {/* <nav className={`w-screen h-[30vh] serviceCard p-[6rem] z-40 fixed top-[0px] left-0 block md:hidden transition-all duration-300 ${showNav ? " translate-x-0" : " -translate-x-full"}`}>
-            <ul className="flex flex-col items-end">
-            <li><a onClick={()=>{router.push('/carts')}} className="text-black hover:opacity-50">
-                  
-                  <span className="" style={{marginRight: "10px"}}>
-                      Account
-                  </span>
-                  <AccountCircleIcon
-                  />
-                 </a> </li>
-                 <li><a  
-                // onClick={()=>{router.push('/carts')}}
-                onClick={handleAddToCartClick} 
-                className="text-black hover:opacity-50">
-                  
-                  <span className="" style={{marginRight: "10px"}}>
-                      Cart
-                  </span>
-                  <AddShoppingCartIcon 
-                  color='#f9f9f9'
-                  fontSize="small"
-                  />
-                  <span className="font-bold mx-[12px]">
-                  {cartCount}
-                  </span>
-                </a> </li>
-            </ul>
-          </nav> */}
             <p
               className=" z-50 text-[30px] my-[auto] md:hidden"
               onClick={handleAddToCartClick} 
@@ -101,7 +72,7 @@ const BaseLayout = ({ children , onSearch, search, searchValue}) => {
             </p> 
         </BaseContainer>
       </header>
-      <main className="min-h-[90vh] bg-white ">{children}</main>
+      <main className="min-h-[90vh] h-[auto]  bg-[#f9f9f9] flex flex-col text-[12px] justify-between">{children}</main>
       <footer className=" relative h-[5vh] md:text-[16px] text-[12px] bg-white items-center flex flex-row justify-center">
          <p> 
           &copy; {new Date().getFullYear()}

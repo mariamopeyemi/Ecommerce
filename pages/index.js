@@ -13,14 +13,15 @@ const Home = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
 
-const searchResults = React.useMemo( () =>  output.filter((item) =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase())
-), [searchTerm, output]);
+// filter by search function
+  const searchResults = React.useMemo( () =>  output.filter((item) =>
+      item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  ), [searchTerm, output]);
     
 
-    const onSearch = (e) => {
+  const onSearch = (e) => {
         setSearchTerm(e.target.value);
-    }
+  }
 
 
 
@@ -62,8 +63,7 @@ const searchResults = React.useMemo( () =>  output.filter((item) =>
  // on page loadComponents, fetch all product
     useEffect(() => {
         const handleSubmit = async () => {
-          
-          const headers = {
+        const headers = {
             'Content-Type': 'application/json',
             // 'Authorization': 'Bearer sk_test_7c6397333b9f0b13e384afd48f572de63abea089'  
           }
@@ -81,33 +81,33 @@ const searchResults = React.useMemo( () =>  output.filter((item) =>
             };
             handleSubmit()
     }, [])
- 
+    const displayableItems = paginate(searchResults)[page];
 
-  return <BaseLayout onSearch={onSearch} searchValue={searchTerm} search>
-   <div className="home">
-            <div className="">
+  return (
+  <BaseLayout onSearch={onSearch} searchValue={searchTerm} search>
+        <div className="home">
                 {/* <img className="home__image hidden xl:flex" src="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/BankPromotions/Mastercard/Nigeria/GTBANK/2021/June/1500x600_2._CB665054876_.jpg" alt=""/> */}
                 <img className="w-full" src="https://ng.jumia.is/cms/Homepage/2021/W29/NG_TOPSTRIP_NSF_Desktop-(1).gif" alt=""/>
                 <div className="md:mx-[4rem]  my-[2rem] grid gap-[1rem] grid-cols-2  md:grid-cols-4  ">
-                {paginate(searchResults)[page]?.length > 0
-                ? paginate(searchResults)[page].map((item, index) => (
-                    <ProductCard
-                        key={index}
-                        id={item.id}
-                        title={item.title}
-                        price={item.price}
-                        image={item.image}
-                        category={item.category}
-                        description={item.description}
-                        rating={item.rating.rate}
-                    />
-                    ))
-                    : <div className="min-h-[80vh] h-[auto]  w-[100%] flex flex-row justify-center items-center">
-                        <p className="m-[auto]  title-2 text-center"> {searchTerm ? "no results found": "fetching products.."}</p>
-                        </div>}
-                </div>
-
-                <div className=" mt-[20px] flex justify-between items-center px-[20px] flex-wrap">
+                    {displayableItems?.length > 0
+                    ? displayableItems.map((item, index) => (
+                        <ProductCard
+                            key={index}
+                            id={item.id}
+                            title={item.title}
+                            price={item.price}
+                            image={item.image}
+                            category={item.category}
+                            description={item.description}
+                            rating={item.rating.rate}
+                        />
+                        ))
+                        : <div className="min-h-[80vh] h-[auto]  w-[100%] flex flex-row justify-center items-center">
+                            <p className="m-[auto]  title-2 text-center"> {searchTerm ? "no results found": "fetching products.."}</p>
+                          </div>}
+                    </div>
+        </div>
+        <div className=" mb-[10px] mt-[20px] flex justify-between items-center px-[20px] flex-wrap">
                     <p>showing result 1-{limit} of {output.length} items</p>
                     <MyPagination page={page + 1}  count={countNo()}
                       onClick={(e) => {
@@ -118,9 +118,7 @@ const searchResults = React.useMemo( () =>  output.filter((item) =>
                         onNext={nextPage}
                       />
                 </div>
-            </div>
-        </div>
-  </BaseLayout>;
+  </BaseLayout>);
 };
 
 export default Home;

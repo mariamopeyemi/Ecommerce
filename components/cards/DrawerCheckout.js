@@ -3,20 +3,19 @@ import { Box, Typography } from '@mui/material';
 import Rating from '@mui/material/Rating';
 import { CartContext } from '../../store/cart.context';
 
-function CheckoutProduct({ cartItem, hideButton}) {
-    // const [{ cart }, dispatch] = useStateValue();
+function CheckoutProduct({ cartItem, }) {
+
     const [value, setValue] = useState(2);
-      const doublePrice = cartItem.price * cartItem.quantity;
-// worinnh
+    const doublePrice = cartItem.price * cartItem.quantity;
 
-const { image, price, title, rating, category,quantity, description, id } = cartItem;
 
-  const { clearItemFromCart, addItemToCart, removeItemToCart } =
-    useContext(CartContext);
+    const { image, price, title, rating, category,quantity, description, id } = cartItem;
 
-  const clearItemHandler = () => clearItemFromCart(cartItem);
-  const handleAddToCart = () => addItemToCart(cartItem);
-  const handleRemoveFromCart = () => removeItemToCart(cartItem);
+    const { clearItemFromCart, addItemToCart, removeItemToCart } =
+      useContext(CartContext);
+
+    const handleAddToCart = () => addItemToCart(cartItem);
+    const handleRemoveFromCart = () => removeItemToCart(cartItem);
 
 
     return (<>
